@@ -5,15 +5,17 @@ var app = express();
 var bodyParser = require('body-parser');
 var github = require('octonode');
 
-app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.post("/build_update/:githubToken", function(req, res) {
   var client = github.client(req.params.githubToken);
-  var repo = client.repo(req.params.payload.commit_url.match(/github\.com\/(.+?\/.+?)\//)[1]);
-  repo.status(req.params.payload.commit, {
-    state: req.params.payload.status === "pass" ? "success" : "failure",
-    target_url: req.params.payload.build_url,
-    description: req.params.payload.title,
+  var payload = JSON.parse(req.body.payload);
+  var repo = client.repo(payload.commit_url.match(/github\.com\/(.+?\/.+?)\//)[1]);
+  repo.status(payload.commit, {
+    state: payload.status === "pass" ? "success" : "failure",
+    target_url: payload.build_url,
+    description: payload.title,
     context: "continuous-integration/magnum-ci"
   }, function() {
     res.end('');
