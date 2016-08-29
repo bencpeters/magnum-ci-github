@@ -1,6 +1,6 @@
 {
   "name": "magnum-ci-github",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple server to listen for Magnum CI build events and update Github with status",
   "main": "app.js",
   "scripts": {
@@ -10,8 +10,8 @@
   "author": "Ben Peters",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.13.3",
-    "express": "^4.13.3",
-    "octonode": "^0.7.1"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "octonode": "^0.7.6"
   }
 }
