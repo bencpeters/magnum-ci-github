@@ -1,6 +1,6 @@
 {
   "name": "magnum-ci-github",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple server to listen for Magnum CI build events and update Github with status",
   "main": "app.js",
   "scripts": {
